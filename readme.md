@@ -33,19 +33,19 @@
 Here are a few common use cases.
 
 ### Generate a single test case for debugging
-This runs the translator in test mode (-t), generating a sample question based on the specification file.
+This runs the translator in test mode (`-t`), generating a sample question based on the specification file.
 ```
 python translator.py -t cases/graduation/spec.json
 ```
 
 ### Generate a full dataset for production
-This runs the translator in production mode (-d) to generate a large number of problems and saves them to a specified output file (-o).
+This runs the translator in production mode (`-d`) to generate a large number of problems and saves them to a specified output file (`-o`).
 ```
 python translator.py -d cases/graduation/spec.json -o data.jsonl
 ```
 
 ### Apply a new template to existing data
-This uses the -g flag to load existing problem data and applies a new problem description or template (new_spec.json) to it.
+This uses the `-g` flag to load existing problem data and applies a new problem description or template (`new_spec.json`) to it.
 ```
 python translator.py -d cases/graduation/new_spec.json -g old_data.jsonl -o new_data.jsonl
 ```
