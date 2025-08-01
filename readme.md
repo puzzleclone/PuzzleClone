@@ -1,4 +1,4 @@
-# Puzzle Clone
+# PuzzleClone
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/puzzleclone/PuzzleClone?style=social)](https://github.com/puzzleclone/PuzzleClone/stargazers)
@@ -12,7 +12,7 @@
     <h3 align="center">
       Important Links:
       <a href="https://puzzleclone.github.io/PuzzleClone/api/index.html">API Docs</a>, 
-      <a href="https://puzzleclone.github.io/PuzzleClone/tutorial/">Tutorials</a>,
+      <a href="https://puzzleclone.github.io/PuzzleClone/tutorial/">Tutorials</a>
     </h3>
 </html>
 
@@ -20,7 +20,7 @@
 ## 📋 Overview
 
 **PuzzleClone** is a data synthesis framework and comprehensive dataset for logical reasoning problems. It features:
-- 📊 **Expansive and Diverse Coverage:** Contains 83,657 unique logical reasoning tasks procedurally generated from 82 seed questions. The dataset spans:
+- 📊 **Expansive and Diverse Coverage:** Contains 83,657 unique logical reasoning tasks procedurally generated from 86 seed questions. The dataset spans:
   - Various applications of Satisfiability Modulo Theories (SMT) and SMT-like puzzles,
   - Classic logical puzzles like Sudoku, the Knapsack problem, and linear optimization (LP).
   - Diverse mathematical problems of varying difficulties.
