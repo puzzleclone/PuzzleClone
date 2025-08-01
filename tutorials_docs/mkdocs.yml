@@ -1,5 +1,5 @@
 site_name: PuzzleClone Tutorials
-site_url: https://puzzleclone.github.io/PuzzleClone/tutorial/
+site_url: build/
 
 nav:
   - Home: index.md
