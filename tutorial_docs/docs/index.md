@@ -17,4 +17,4 @@
 Please visit [here](quickstart.md) to learn how to batch generate puzzles with PuzzleClone. 
 
 ## API document
-Please visit [here](http://localhost:8001/) for detailed information on the APIs.
+Please visit [here](https://puzzleclone.github.io/PuzzleClone/api/index.html) for detailed information on the APIs.
