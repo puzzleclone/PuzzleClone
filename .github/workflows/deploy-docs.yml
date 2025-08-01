@@ -32,18 +32,6 @@ jobs:
       - name: Install dependencies
         run: |
           pip install sphinx sphinx-autobuild sphinx-rtd-theme mkdocs
-
-      - name: Build API Docs (Sphinx)
-        run: |
-          cd docs
-          # Note: Adjust the sphinx-apidoc path if your project structure is different
-          sphinx-apidoc -o source ../smt-master "../../smt-master/test*" "../../smt-master/output*"
-          make html
-        
-      - name: Build Tutorial Docs (MkDocs)
-        run: |
-          cd tutorial_docs
-          mkdocs build
       
       - name: Prepare deployment artifact
         run: |
