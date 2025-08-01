@@ -1,4 +1,9 @@
-### Puzzle Clone
+# Puzzle Clone
+
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/puzzleclone/PuzzleClone?style=social)](https://github.com/puzzleclone/PuzzleClone/stargazers)
+![Python Version](https://img.shields.io/badge/python-3.10%2B-blue?logo=python&logoColor=yellow)
+[![GitHub Pages](https://img.shields.io/github/deployments/puzzleclone/PuzzleClone/github-pages?label=docs&logo=github)](https://puzzleclone.github.io/PuzzleClone/)
 
 <html>
     <h3 align="center">
