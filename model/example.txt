@@ -1,0 +1,55 @@
+from template import PuzzleTemplate, Variable, Symbol, BaseCondition, ExtraCondition, Query
+
+
+puzzle_template = PuzzleTemplate(
+    variables={
+        "p_num": Variable(type="int", domain="[5, 12]"),
+        "sub_num": Variable(type="int", domain="[p_num // 2, p_num // 1.5]"),
+        "names": Variable(formula="generate_letters(p_num)"),
+        "name_desc": Variable(formula="'、'.join(names)")
+    },
+    symbols={
+        "events": Symbol(init="[names]", type="Bool")
+    },
+    base_conditions={
+        "base": BaseCondition(
+            formula="gen_event_count_condition(events, 'equal', sub_num)",
+            desc="将选派{sub_num}个人参加毕业典礼"
+        )
+    },
+    extra_conditions={
+        "extra1": ExtraCondition(
+            domain="[1, 3]",
+            pool_vals="choose(events, 2, extra1_num)",
+            formula="gen_event_count_condition(p, 'equal', 1)",
+            desc="{p[0]}和{p[1]}至少选派一个，但不能都选派。"
+        )
+    },
+    query={
+        "q1": Query(
+            desc="以下哪项可以是符合条件的人选？",
+            opt_num=5,
+            opt_formula="get_required_non_solutions(solutions, base_conditions, opt_num-1)",
+            opt_text="{'、'.join(q1_opt)}"
+        ),
+        "q2": Query(
+            desc="被选派的人中一定包括：",
+            opt_formula="find_required_event_groups(events, solutions, fact = 'least', event_num = 2, true_num = 1)",
+            opt_text="{q2_opt[0]}或{q2_opt[1]}或二者都被选派。",
+            opt_num=4
+        ),
+        "q3": Query(
+            desc="以下哪两个人不可能被同时选派？",
+            opt_formula="find_required_event_groups(events, solutions, fact = 'most', event_num = 2, true_num = 1)",
+            opt_text="{q3_opt[0]}和{q3_opt[1]}",
+            opt_num=5
+        )
+    },
+    desc="在{p_num}个毕业生{name_desc}中，{base}。选派必须满足以下条件：\n{extra1}\n{extra2}\n{query}"
+)
+
+
+json_data = puzzle_template.model_dump_json(indent=4)  # 转换为 JSON
+print(json_data)
+new_template = PuzzleTemplate.model_validate_json(json_data)  # 从 JSON 反序列化
+print(new_template.base_conditions["base"])

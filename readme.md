@@ -1,0 +1,84 @@
+### Puzzle Clone
+
+An open-source data generation framework for batch construction of verifiable, controllable, and diverse puzzles.
+
+## 📋 Overview
+
+**PuzzleClone** is a data synthesis framework and comprehensive dataset for logical reasoning problems. It features:
+- 📊 **Expansive and Diverse Coverage:** Contains 83,592 unique logical reasoning tasks procedurally generated from 82 seed questions. The dataset spans:
+  - Various applications of Satisfiability Modulo Theories (SMT) and SMT-like puzzles,
+  - Classic logical puzzles like Sudoku, the Knapsack problem, and linear optimization (LP).
+  - Diverse mathematical problems of varying difficulties.
+- ✅ **Guaranteed Verifiability:** Every problem is generated with a ground-truth solution and is verifiable by a symbolic SMT solver, ensuring correctness.
+- 🎯 **Granular Control:** Offers fine-grained control over problem attributes like scale, structure, and difficulty through a set of adjustable parameters, enabling large-scale batch generation.
+- ✨ **Flexible Adaptation:** Facilitates the easy customization of problem scenarios and translation into different languages or domains.
+- 🚀 **State-of-the-Art Performance:** Achieves SOTA results among open-source datasets, outperforming the next-best public dataset by [X] points on the BIG-Bench Hard (BBH) benchmark.
+
+## 🚀 Quick Start
+Here are a few common use cases.
+
+### Generate a single test case for debugging
+This runs the translator in test mode (-t), generating a sample question based on the specification file.
+```
+python translator.py -t cases/graduation/spec.json
+```
+
+### Generate a full dataset for production
+This runs the translator in production mode (-d) to generate a large number of problems and saves them to a specified output file (-o).
+```
+python translator.py -d cases/graduation/spec.json -o data.jsonl
+```
+
+### Apply a new template to existing data
+This uses the -g flag to load existing problem data and applies a new problem description or template (new_spec.json) to it.
+```
+python translator.py -d cases/graduation/new_spec.json -g old_data.jsonl -o new_data.jsonl
+```
+
+
+## 📖 Generating API Documentation
+
+The project uses [Sphinx](https://www.sphinx-doc.org/en/master/) to automatically generate API documentation from the source code.
+
+### Install Dependencies
+First, install the required Python packages for building the documentation.
+```
+pip install sphinx sphinx-autobuild sphinx-rtd-theme
+```
+
+### Initial Setup (Run Once)
+If the docs directory does not exist, initialize it with Sphinx.
+```
+sphinx-quickstart docs
+```
+
+### Build or Update the Documentation
+To generate or refresh the HTML documentation, follow these steps:
+
+```
+cd docs
+sphinx-apidoc -o source ../../smt-master "../../smt-master/test*" "../../smt-master/output*"
+make clean && make html
+```
+
+### Serve the Documentation Locally
+You can view the generated documentation locally using Python's built-in web server.
+
+```
+cd build/html
+python -m http.server 8001
+```
+
+You can now view the documentation by navigating to http://localhost:8001 in your web browser.
+
+
+### The tutorial document
+You can serve the tutorial document using the following commands:
+
+```
+pip install mkdocs
+cd tutorial_docs
+mkdocs serve -a localhost:8002
+```
+
+The document will be available at http://localhost:8002/.
