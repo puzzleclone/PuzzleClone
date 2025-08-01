@@ -29,6 +29,12 @@
 - 🚀 **State-of-the-Art Performance:** Achieves SOTA results among open-source datasets, outperforming the next-best public dataset by [X] points on the BIG-Bench Hard (BBH) benchmark.
 
 ## 🚀 Quick Start
+```
+git clone https://github.com/puzzleclone/PuzzleClone.git
+cd PuzzleClone
+pip install -r requirements.txt
+```
+
 Here are a few common use cases.
 
 ### Generate a single test case for debugging
