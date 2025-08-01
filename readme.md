@@ -1,6 +1,16 @@
 ### Puzzle Clone
 
-An open-source data generation framework for batch construction of verifiable, controllable, and diverse puzzles.
+<html>
+    <h3 align="center">
+      An open-source data generation framework for batch construction of verifiable, controllable, and diverse puzzles.
+    </h3>
+    <h3 align="center">
+      Important Links:
+      <a href="https://puzzleclone.github.io/PuzzleClone/api/index.html">API Docs</a>, 
+      <a href="https://puzzleclone.github.io/PuzzleClone/tutorial/">Tutorials</a>,
+    </h3>
+</html>
+
 
 ## 📋 Overview
 
@@ -34,3 +44,7 @@ This uses the -g flag to load existing problem data and applies a new problem de
 ```
 python translator.py -d cases/graduation/new_spec.json -g old_data.jsonl -o new_data.jsonl
 ```
+
+## ⚖️ License
+
+This project is licensed under the Apache 2.0 License. See the [LICENSE](LICENSE) file for details.
