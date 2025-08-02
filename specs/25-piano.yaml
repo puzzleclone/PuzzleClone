@@ -82,5 +82,5 @@ queries:
       - 0
       constraint: any([get_value(_model, day_s[names[query_student]]) == query_days[0]
         for _model in _solutions])
-desc: 一个钢琴教师有{student_num}个学生：{','.join(names)}。在连续的{student_num}天中，这个钢琴教师每天上并且只上一次课；每次课给并且只给一个学生上。课程安排必须满足以下条件：{extra_conditions}
+desc: 一个钢琴教师有{student_num}个学生：{','.join(names)}。在连续的{student_num}天中，这个钢琴教师每天上并且只上一次课；每次课给并且只给一个学生上。课程安排必须满足以下条件：{conditions}
   {q1}

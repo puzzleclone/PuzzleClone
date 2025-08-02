@@ -110,4 +110,4 @@ queries:
         - 1
         constraint: 'lambda l: all([all([names[item[0][0][0]] != d[0][0] or food[item[0][1][0]]
           != d[1][0] for d in a_buys_b.data])  for item in l])'
-desc: 有{'、'.join(names)}{p_num}个人，在{'、'.join(food)}{f_num}种快餐食品中，至少买了一种。他们对食品的选择满足以下条件：{extra_conditions}{q1}
+desc: 有{'、'.join(names)}{p_num}个人，在{'、'.join(food)}{f_num}种快餐食品中，至少买了一种。他们对食品的选择满足以下条件：{conditions}{q1}

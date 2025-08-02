@@ -11,7 +11,7 @@
 - ✅ **Guaranteed Verifiability:** Every problem is generated with a ground-truth solution and is verifiable by a symbolic SMT solver, ensuring correctness.
 - 🎯 **Granular Control:** Offers fine-grained control over problem attributes like scale, structure, and difficulty through a set of adjustable parameters, enabling large-scale batch generation.
 - ✨ **Flexible Adaptation:** Facilitates the easy customization of problem scenarios and translation into different languages or domains.
-- 🚀 **State-of-the-Art Performance:** Achieves SOTA results among open-source datasets, outperforming the next-best public dataset by [X] points on the BIG-Bench Hard (BBH) benchmark.
+- 🚀 **State-of-the-Art Performance:** Achieves SOTA results among open-source datasets, outperforming the public dataset by 12.5 points on AMC2023 (from 52.5 to 65.0).
 
 ## Tutorials
 Please visit [here](quickstart.md) to learn how to batch generate puzzles with PuzzleClone. 

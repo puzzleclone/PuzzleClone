@@ -76,4 +76,4 @@ queries:
       if q_gender else 'girl')) == p])[0]  for p in range(p_num)] for _model in _solutions])
     ans_text: "','.join(_ans[0])"
     ans_assertion: len(_ans) == 1
-desc: "{'、'.join(names)}是{p_num}兄弟。他们每人都有一个儿子和一个女儿，为了增进孩子们的感情，他们决定让自己的孩子到其他家庭里度假，假期长{m_num}个月，孩子们每过一个月换一家，并且亲兄弟不能一起在同一家生活，所以每一个月中，每一家都要接待一对男孩女孩，并且只能是堂兄妹，不是亲兄妹。已知：{extra_conditions}{q1}\n"
+desc: "{'、'.join(names)}是{p_num}兄弟。他们每人都有一个儿子和一个女儿，为了增进孩子们的感情，他们决定让自己的孩子到其他家庭里度假，假期长{m_num}个月，孩子们每过一个月换一家，并且亲兄弟不能一起在同一家生活，所以每一个月中，每一家都要接待一对男孩女孩，并且只能是堂兄妹，不是亲兄妹。已知：{conditions}{q1}\n"

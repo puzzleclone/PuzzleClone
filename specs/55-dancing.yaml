@@ -57,5 +57,5 @@ queries:
     desc: 根据这些情况，你能猜出{'、'.join(names)}各排在第几名吗？请按顺序将名次的数字用逗号分隔输出，如2,1,...。
     ans_formula: "[str(get_value(_solutions[0], rank[p]) + 1) for p in names]"
     ans_text: "','.join(_ans)"
-desc: 某届国际标准舞蹈大赛，共有{p_num}个国家参赛队进入决赛，它们是：{'、'.join(names)}。比赛结果如下，{extra_conditions}
+desc: 某届国际标准舞蹈大赛，共有{p_num}个国家参赛队进入决赛，它们是：{'、'.join(names)}。比赛结果如下，{conditions}
   {q1}

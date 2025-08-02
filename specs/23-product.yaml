@@ -66,4 +66,4 @@ queries:
     cond: all
     opt_formula: get_value(_model, pos[_opt[0][0]]) == _opt[1][0]
     opt_text: "{_opt[0][0]}在第{_opt[1][0]}位置上。"
-desc: 在超市购物后，{names[0]}把{p_num}件商品从前向后排序（1号位置在前，{p_num}号位置在后）放在超市的传送带上，{extra_conditions}{q1}
+desc: 在超市购物后，{names[0]}把{p_num}件商品从前向后排序（1号位置在前，{p_num}号位置在后）放在超市的传送带上，{conditions}{q1}

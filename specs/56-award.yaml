@@ -48,4 +48,4 @@ queries:
     ans_text: str(_ans)
     ans_assertion: len(_solutions) <= 50
 desc: 在抗击疫情网络知识竞赛中,为奖励成绩突出的学生,学校计划用{money}元钱购买{'、'.join(names)}三种奖品（可以不全买）,{','.join([names[i]
-  + '种每个' + str(prices[i]) + '元' for i in range(p_num)])}, {extra_conditions}{q1}
+  + '种每个' + str(prices[i]) + '元' for i in range(p_num)])}, {conditions}{q1}

@@ -81,4 +81,4 @@ queries:
     cond: all
     opt_formula: get_value(_model, is_more[(_opt[0][0], _opt[0][1])]) == _opt[1][0]
     opt_text: "{_opt[0][0]}的票数{'不' if not _opt[1][0] else ''}比{_opt[0][1]}多。"
-desc: "{p_num}位侯选人{'、'.join(names)}竞选厂长。选举的过程满足以下条件：{extra_conditions}{q1}"
+desc: "{p_num}位侯选人{'、'.join(names)}竞选厂长。选举的过程满足以下条件：{conditions}{q1}"

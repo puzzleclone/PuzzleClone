@@ -60,4 +60,4 @@ queries:
     ans_formula: get_value(_solutions[0], list(vars))
     ans_text: "','.join([names[_ans[0]], ages[_ans[1]], genders[_ans[2]], subjects[_ans[3]]])"
     ans_assertion: all([isinstance(v, int) for v in _ans])
-desc: 学校新来了一位老师，可能教{'、'.join(subjects)}中的其中一门课，{p_num}个学生分别听到如下的情况：{extra_conditions}他们听到的情况各有{correct_num}项正确，{q1}
+desc: 学校新来了一位老师，可能教{'、'.join(subjects)}中的其中一门课，{p_num}个学生分别听到如下的情况：{conditions}他们听到的情况各有{correct_num}项正确，{q1}

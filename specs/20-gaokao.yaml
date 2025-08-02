@@ -65,5 +65,5 @@ queries:
     ans_text: _ans[0]
     ans_assertion: len(_ans) == 1
 desc: N中学在进行高考免试学生的推荐时，共有{'、'.join(students)}等{student_num}位同学入围。在{student_num}人中，有{student_num
-  - male_num}位同学是女生，{male_num}位同学是男生；有{old_num}位同学年龄为18岁，而另{student_num - old_num}位同学年龄则为17岁。已知，{extra_conditions}
+  - male_num}位同学是女生，{male_num}位同学是男生；有{old_num}位同学年龄为18岁，而另{student_num - old_num}位同学年龄则为17岁。已知，{conditions}
   {queries}

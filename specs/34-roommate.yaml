@@ -119,4 +119,4 @@ queries:
       == half_p_num] for _model in _solutions])
     ans_text: _ans[0][0]
     ans_assertion: len(_ans) == 1
-desc: "{','.join(names)} {p_num}个人住在{p_num}个相邻的房间内，他们之间满足这样的条件：每个人喜欢一种宠物，一种饮料，一种啤酒，不是兔就是猫，不是果粒橙就是葡萄汁，不是青岛就是哈尔滨；{extra_conditions}{at_most_one_shared_hobby}{q1}"
+desc: "{','.join(names)} {p_num}个人住在{p_num}个相邻的房间内，他们之间满足这样的条件：每个人喜欢一种宠物，一种饮料，一种啤酒，不是兔就是猫，不是果粒橙就是葡萄汁，不是青岛就是哈尔滨；{conditions}{q1}"

@@ -90,4 +90,4 @@ queries:
       constraint: all([(item[0][0], item[1][0]) not in [(_opt[0][0], _opt[1][0]),
         (_opt[0][1], _opt[1][0])] for item in extra2.data])
 desc: "{child_num}个儿童{'、'.join(names[:child_num])}和{p_num - child_num}个成年人{'、'.join(names[child_num:p_num])}分别乘坐{'、'.join([str(i\
-  \ + 1) + '号' for i in range(ship_num)])}{ship_num}个游艇，每个游艇乘坐{num_per_ship}人。以下条件必须满足：{at_least_one_adult_per_ship}{extra_conditions}{q1}"
+  \ + 1) + '号' for i in range(ship_num)])}{ship_num}个游艇，每个游艇乘坐{num_per_ship}人。以下条件必须满足：{at_least_one_adult_per_ship}{conditions}{q1}"

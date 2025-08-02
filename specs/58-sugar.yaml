@@ -50,4 +50,4 @@ queries:
     ans_formula: "[get_value(_solutions[0], num[(n, steps[0])]) for n in names]"
     ans_text: "','.join([str(v) for v in _ans])"
     ans_assertion: len(_solutions) == 1
-desc: "{name_desc}{p_num}人原来各有糖豆若干粒,{extra_conditions},这样每人恰好各有{final_num}粒糖豆,{q1}"
+desc: "{name_desc}{p_num}人原来各有糖豆若干粒,{conditions},这样每人恰好各有{final_num}粒糖豆,{q1}"

@@ -93,4 +93,4 @@ queries:
       \ pet)])] for name in names]"
     ans_text: str(_ans)
     ans_assertion: len(_solutions) == 1
-desc: "{'、'.join(names)}{p_num}个女孩各饲养了{'、'.join(pets)}中的1~{max_pet}种。现已知：{extra_conditions}{q1}"
+desc: "{'、'.join(names)}{p_num}个女孩各饲养了{'、'.join(pets)}中的1~{max_pet}种。现已知：{conditions}{q1}"

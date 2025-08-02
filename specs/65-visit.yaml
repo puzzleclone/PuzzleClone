@@ -60,4 +60,4 @@ queries:
       \ item2 in _ans])][0])"
     ans_assertion: (sum([len(item) == max([len(item2) for item2 in _ans]) for item
       in _ans]) == 1) and all([p in conditions for p in places])
-desc: 某参观团根据以下约束条件在{'、'.join(places)}{place_num}个城市中选择参观地点，{extra_conditions}{q1}
+desc: 某参观团根据以下约束条件在{'、'.join(places)}{place_num}个城市中选择参观地点，{conditions}{q1}

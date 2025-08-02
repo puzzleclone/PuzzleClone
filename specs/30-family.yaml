@@ -119,5 +119,5 @@ queries:
       _model in _solutions])
     ans_text: _ans[0]
     ans_assertion: len(_ans) == 1
-desc: 有{family_num}户人家，每家有一个孩子，他们的名字是：{'、'.join(children)}。孩子的爸爸是{'、'.join(fathers)}；妈妈是{'、'.join(mothers)}。对于这{family_num}家人，已知：{extra_conditions}
+desc: 有{family_num}户人家，每家有一个孩子，他们的名字是：{'、'.join(children)}。孩子的爸爸是{'、'.join(fathers)}；妈妈是{'、'.join(mothers)}。对于这{family_num}家人，已知：{conditions}
   {queries}

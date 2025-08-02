@@ -67,4 +67,4 @@ queries:
     ans_formula: to_unique([[p for p in names if get_value(_model, elected[p])] for
       _model in _solutions])
     ans_text: "','.join(_ans[0])"
-desc: "公司要在{name_desc}中选拔人出差，人选的配备要求，必须注意下列各点：{extra_conditions} {q1}\n"
+desc: "公司要在{name_desc}中选拔人出差，人选的配备要求，必须注意下列各点：{conditions} {q1}\n"

@@ -160,5 +160,5 @@ queries:
       == query_idx][0] for _model in _solutions])
     ans_text: _ans[0]
     ans_assertion: len(_ans) == 1
-desc: 有{p_num}位小姐{','.join(names)}排成一列，这{p_num}位小姐衣服的颜色、喝的饮料、喜欢的宠物、吃的水果都不相同。{extra_conditions}
+desc: 有{p_num}位小姐{','.join(names)}排成一列，这{p_num}位小姐衣服的颜色、喝的饮料、喜欢的宠物、吃的水果都不相同。{conditions}
   {q1}

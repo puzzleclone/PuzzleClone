@@ -55,4 +55,4 @@ queries:
     ans_formula: names[get_value(_solutions[0], e[(names[q1_name], days[d_num - 1])])]
     ans_text: _ans
     ans_assertion: 'True'
-desc: "{name_desc}{p_num}个选手进行乒乓球单打的单循环比赛(每人都与其它选手赛一场)，每天同时在{p_num_div_2}张球台各进行一场比赛，已知{extra_conditions}。{queries}"
+desc: "{name_desc}{p_num}个选手进行乒乓球单打的单循环比赛(每人都与其它选手赛一场)，每天同时在{p_num_div_2}张球台各进行一场比赛，已知{conditions}。{queries}"

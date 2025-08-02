@@ -30,4 +30,4 @@ queries:
     desc: 求{name}家的门牌号码?
     ans_formula: get_value(_solutions[0], num['v'])
     ans_text: _ans
-desc: "{name}家门牌号码满足:{extra_conditions}{q1}"
+desc: "{name}家门牌号码满足:{conditions}{q1}"

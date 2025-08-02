@@ -48,4 +48,4 @@ queries:
     ans_text: "','.join([str(v) for v in _ans])"
     ans_assertion: len(_solutions) == 1
 desc: "期中考试考试结束后,部分同学对班上{p_num}名同学的名次进行了猜测。{'；'.join([names[i] + '的猜测：' + '、'.join([names[j]\
-  \ + '第' + str(e1.data[i][0][j] + 1) + '名' for j in range(p_num)]) for i in range(len(e1.data))])}。“六一”前后,考试成绩出来了。实际上，{extra_conditions}{q1}\n"
+  \ + '第' + str(e1.data[i][0][j] + 1) + '名' for j in range(p_num)]) for i in range(len(e1.data))])}。“六一”前后,考试成绩出来了。实际上，{conditions}{q1}\n"
