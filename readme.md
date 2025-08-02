@@ -27,7 +27,7 @@
   - Various applications of Satisfiability Modulo Theories (SMT) and SMT-like puzzles,
   - Classic logical puzzles like Sudoku, the Knapsack problem, and linear optimization (LP).
   - Diverse mathematical problems of varying difficulties.
-- 🚀 **State-of-the-Art Performance:** Achieves SOTA results among open-source datasets, outperforming the next-best public dataset by [X] points on the BIG-Bench Hard (BBH) benchmark.
+- 🚀 **State-of-the-Art Performance:** Achieves SOTA results among open-source datasets, outperforming the public dataset by 12.5 points on AMC2023 (from 52.5 to 65.0).
 
 ## 🚀 Quick Start
 ```
