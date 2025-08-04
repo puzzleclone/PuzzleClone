@@ -1,0 +1,13 @@
+**/__pycache__/
+output*
+config*.json
+.venv
+.DS_Store
+
+# Sphinx documentation build artifacts
+docs/build/
+docs/_build/
+docs/locale/.doctrees/
+
+# MkDocs documentation build artifacts
+tutorial_docs/site/
