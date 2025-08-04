@@ -51,11 +51,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#translator.init_program"><code class="docutils literal notranslate"><span class="pre">init_program()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#translator.parse_config_file"><code class="docutils literal notranslate"><span class="pre">parse_config_file()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#translator.process"><code class="docutils literal notranslate"><span class="pre">process()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#translator.process_base_conditions"><code class="docutils literal notranslate"><span class="pre">process_base_conditions()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#translator.process_conditions"><code class="docutils literal notranslate"><span class="pre">process_conditions()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#translator.process_custom_operator"><code class="docutils literal notranslate"><span class="pre">process_custom_operator()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#translator.process_defined_symbols"><code class="docutils literal notranslate"><span class="pre">process_defined_symbols()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#translator.process_extra_conditions"><code class="docutils literal notranslate"><span class="pre">process_extra_conditions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#translator.process_dynamic_conditions"><code class="docutils literal notranslate"><span class="pre">process_dynamic_conditions()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#translator.process_multiple_derived_symbols"><code class="docutils literal notranslate"><span class="pre">process_multiple_derived_symbols()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#translator.process_multiple_query"><code class="docutils literal notranslate"><span class="pre">process_multiple_query()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#translator.process_optimize"><code class="docutils literal notranslate"><span class="pre">process_optimize()</span></code></a></li>
@@ -63,6 +62,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#translator.process_query"><code class="docutils literal notranslate"><span class="pre">process_query()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#translator.process_single_derived_symbols"><code class="docutils literal notranslate"><span class="pre">process_single_derived_symbols()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#translator.process_single_query"><code class="docutils literal notranslate"><span class="pre">process_single_query()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#translator.process_static_conditions"><code class="docutils literal notranslate"><span class="pre">process_static_conditions()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#translator.process_symbols"><code class="docutils literal notranslate"><span class="pre">process_symbols()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#translator.process_vars"><code class="docutils literal notranslate"><span class="pre">process_vars()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#translator.process_with_config"><code class="docutils literal notranslate"><span class="pre">process_with_config()</span></code></a></li>
@@ -125,11 +125,6 @@
 <dd></dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="translator.process_base_conditions">
-<span class="sig-prename descclassname"><span class="pre">translator.</span></span><span class="sig-name descname"><span class="pre">process_base_conditions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sym</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/translator.html#process_base_conditions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#translator.process_base_conditions" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="translator.process_conditions">
 <span class="sig-prename descclassname"><span class="pre">translator.</span></span><span class="sig-name descname"><span class="pre">process_conditions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/translator.html#process_conditions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#translator.process_conditions" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -145,8 +140,8 @@
 <dd></dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="translator.process_extra_conditions">
-<span class="sig-prename descclassname"><span class="pre">translator.</span></span><span class="sig-name descname"><span class="pre">process_extra_conditions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sym</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/translator.html#process_extra_conditions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#translator.process_extra_conditions" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="translator.process_dynamic_conditions">
+<span class="sig-prename descclassname"><span class="pre">translator.</span></span><span class="sig-name descname"><span class="pre">process_dynamic_conditions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sym</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/translator.html#process_dynamic_conditions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#translator.process_dynamic_conditions" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -182,6 +177,11 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="translator.process_single_query">
 <span class="sig-prename descclassname"><span class="pre">translator.</span></span><span class="sig-name descname"><span class="pre">process_single_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qconfig</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cnt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/translator.html#process_single_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#translator.process_single_query" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="translator.process_static_conditions">
+<span class="sig-prename descclassname"><span class="pre">translator.</span></span><span class="sig-name descname"><span class="pre">process_static_conditions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sym</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/translator.html#process_static_conditions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#translator.process_static_conditions" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">

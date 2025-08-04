@@ -359,7 +359,7 @@ def process_symbols(Dict: dict):
     return codegen + '\n\n', codeval + '\n\n'
 
 
-def process_base_conditions(sym: str, template: dict):
+def process_static_conditions(sym: str, template: dict):
     res = ""
     if template['desc']:
         res += f"{sym} = f\"{ext(template['desc'])}\"\n"
@@ -369,7 +369,7 @@ def process_base_conditions(sym: str, template: dict):
     res += f"_conditions.append({template['formula']})\n"
     return res + '\n\n', res + '\n\n'
 
-def process_extra_conditions(sym: str, template: dict):
+def process_dynamic_conditions(sym: str, template: dict):
     codegen = ""
     codeval = ""
     if template['source'] is None:
@@ -431,12 +431,12 @@ conditions = ""
     codegen += codesol
     codeval += codesol
     for item in Dict:
-        if "source" in Dict[item]: # ExtraCondition
-            codesol = process_extra_conditions(item, Dict[item])
+        if "source" in Dict[item]: # DynamicCondition
+            codesol = process_dynamic_conditions(item, Dict[item])
             codegen += codesol[0]
             codeval += codesol[1]
-        else: # BaseCondition
-            codesol = process_base_conditions(item, Dict[item])
+        else: # StaticCondition
+            codesol = process_static_conditions(item, Dict[item])
             codegen += codesol[0]
             codeval += codesol[1]
     return codegen + '\n\n', codeval + '\n\n'

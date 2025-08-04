@@ -329,7 +329,7 @@ class DerivedSymbols(BaseModel):
     """List of symbol templates for generation."""
 
 
-class BaseCondition(BaseModel):
+class StaticCondition(BaseModel):
     """Base constraint definition for puzzle rules."""
 
     formula: str
@@ -344,7 +344,7 @@ class BaseCondition(BaseModel):
     Example: "Sum of two numbers must be less than 10"
     """
 
-class ExtraCondition(BaseCondition):
+class DynamicCondition(StaticCondition):
     """Extended constraints with multi-dimensional parameters."""
 
     source: list
@@ -384,7 +384,7 @@ class PostGen(BaseModel):
     Value: The expression to compute the variable value, which can be a string of a Python expression.
     """
 
-    post_gen_conditions: Optional[Dict[str, BaseCondition]] = None
+    post_gen_conditions: Optional[Dict[str, StaticCondition]] = None
     """New constraints to add after initial solution.
     
     Key: The new constraint name.
@@ -516,7 +516,7 @@ class PuzzleTemplate(BaseModel):
     symbols: Optional[Dict[str, Union[DefinedSymbol, DerivedSymbols, DerivedSymbol]]] = None
     """Dictionary of symbol definitions (name: definition)."""
 
-    conditions: Optional[Dict[str, Union[BaseCondition, ExtraCondition]]] = None
+    conditions: Optional[Dict[str, Union[StaticCondition, DynamicCondition]]] = None
     """Dictionary of conditions."""
 
     calc_solution: bool = True

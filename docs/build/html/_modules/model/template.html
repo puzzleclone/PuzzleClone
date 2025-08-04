@@ -418,9 +418,9 @@
 
 
 
-<div class="viewcode-block" id="BaseCondition">
-<a class="viewcode-back" href="../../model.html#model.template.BaseCondition">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">BaseCondition</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<div class="viewcode-block" id="StaticCondition">
+<a class="viewcode-back" href="../../model.html#model.template.StaticCondition">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">StaticCondition</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base constraint definition for puzzle rules.&quot;&quot;&quot;</span>
 
     <span class="n">formula</span><span class="p">:</span> <span class="nb">str</span>
@@ -436,9 +436,9 @@
 <span class="sd">    &quot;&quot;&quot;</span></div>
 
 
-<div class="viewcode-block" id="ExtraCondition">
-<a class="viewcode-back" href="../../model.html#model.template.ExtraCondition">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">ExtraCondition</span><span class="p">(</span><span class="n">BaseCondition</span><span class="p">):</span>
+<div class="viewcode-block" id="DynamicCondition">
+<a class="viewcode-back" href="../../model.html#model.template.DynamicCondition">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DynamicCondition</span><span class="p">(</span><span class="n">StaticCondition</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extended constraints with multi-dimensional parameters.&quot;&quot;&quot;</span>
 
     <span class="n">source</span><span class="p">:</span> <span class="nb">list</span>
@@ -481,7 +481,7 @@
 <span class="sd">    Value: The expression to compute the variable value, which can be a string of a Python expression.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">post_gen_conditions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseCondition</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">post_gen_conditions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">StaticCondition</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;New constraints to add after initial solution.</span>
 <span class="sd">    </span>
 <span class="sd">    Key: The new constraint name.</span>
@@ -637,7 +637,7 @@
     <span class="n">symbols</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">DefinedSymbol</span><span class="p">,</span> <span class="n">DerivedSymbols</span><span class="p">,</span> <span class="n">DerivedSymbol</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Dictionary of symbol definitions (name: definition).&quot;&quot;&quot;</span>
 
-    <span class="n">conditions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">BaseCondition</span><span class="p">,</span> <span class="n">ExtraCondition</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">conditions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">StaticCondition</span><span class="p">,</span> <span class="n">DynamicCondition</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Dictionary of conditions.&quot;&quot;&quot;</span>
 
     <span class="n">calc_solution</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>

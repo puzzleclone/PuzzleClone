@@ -615,7 +615,7 @@ msgstr ""
 msgid "Main puzzle template structure integrating all components."
 msgstr ""
 
-#: ../../docstring of model.template.PuzzleTemplate.base_conditions:1
+#: ../../docstring of model.template.PuzzleTemplate.static_conditions:1
 msgid "Dictionary of base constraints."
 msgstr ""
 
@@ -672,7 +672,7 @@ msgstr ""
 msgid "Overall template description for puzzle introduction."
 msgstr ""
 
-#: ../../docstring of model.template.PuzzleTemplate.extra_conditions:1
+#: ../../docstring of model.template.PuzzleTemplate.dynamic_conditions:1
 msgid "Dictionary of extended constraints."
 msgstr ""
 

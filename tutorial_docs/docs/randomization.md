@@ -168,7 +168,7 @@ class PostGen(BaseModel):
     Value: A Python expression to compute the variable's value from the solution.
     """
 
-    post_gen_conditions: Optional[Dict[str, BaseCondition]] = None
+    post_gen_conditions: Optional[Dict[str, StaticCondition]] = None
     """Add new, final constraints to the puzzle.
     
     Key: The name of the new constraint.
