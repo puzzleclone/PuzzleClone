@@ -179,7 +179,7 @@ class PostGen(BaseModel):
 Here is an example specification file for the wine puzzle:
 
 ```yaml
-vars:
+variables:
   wine_num: # Total number of barrels (wine + beer)
     type: int
     domain: "[6, 12]"

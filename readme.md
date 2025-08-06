@@ -12,7 +12,8 @@
       Important Links:
       <a href="https://puzzleclone.github.io/PuzzleClone/api/index.html">API Docs</a>, 
       <a href="https://puzzleclone.github.io/PuzzleClone/tutorial/">Tutorials</a>,
-      <a href="https://github.com/puzzleClone/PuzzleCloneData/">Benchmark</a>
+      <a href="https://github.com/puzzleClone/PuzzleCloneData/">Benchmark</a>,
+      <a href="https://github.com/puzzleclone/PolyhedronEvaluator">Evaluation Toolkit</a>
     </h3>
 </html>
 
@@ -55,6 +56,10 @@ This uses the `-g` flag to load existing problem data and applies a new problem 
 ```
 python translator.py -d cases/graduation/new_spec.json -g old_data.jsonl -o new_data.jsonl
 ```
+
+### Evaluation
+
+See our evaluation toolkit [PolyhedronEvaluator](https://github.com/puzzleclone/PolyhedronEvaluator).
 
 ## ⚖️ License
 
