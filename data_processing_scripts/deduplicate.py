@@ -6,14 +6,24 @@ from typing import Dict, Any, Tuple, List, Union
 
 def to_hashable(obj: Any, key_name: str = None) -> Any:
     """
-    将可能的数据结构转换为可哈希类型，支持特殊数值模式和嵌套字典。
-    仅当键名为"pool"且值为嵌套数组时，对最外层数组排序；其他情况保持原有顺序。
+    Convert data structures to hashable types for deduplication.
+    
+    This function transforms complex data structures into hashable tuples
+    while preserving semantic equivalence. Special handling is applied
+    for "pool" arrays to ensure order-independent comparison.
+    
+    Args:
+        obj: The object to convert (dict, list, tuple, or primitive type)
+        key_name: Name of the current key being processed (used for special handling)
+        
+    Returns:
+        Hashable representation of the input object
     """
     if isinstance(obj, dict):
-        # 嵌套字典递归处理，传递当前键名
+        # Process nested dictionaries recursively, passing current key name
         return tuple(sorted((k, to_hashable(v, key_name=k)) for k, v in obj.items()))
     elif isinstance(obj, list) or isinstance(obj, tuple):
-        # 处理嵌套数组：仅当键名为"pool"且元素为嵌套数组时才排序外层
+        # Handle nested arrays: sort outer layer only for "pool" keys with nested arrays
         processed_items = []
         for item in obj:
             if isinstance(item, (list, tuple)):
@@ -21,60 +31,80 @@ def to_hashable(obj: Any, key_name: str = None) -> Any:
             else:
                 processed_items.append(to_hashable(item, key_name=None))
         
-        # 仅对键名为"pool"的嵌套数组进行外层排序
+        # Sort outer layer only for "pool" keys containing nested arrays
         if key_name == "pool" and any(isinstance(item, tuple) for item in processed_items):
             return tuple(sorted(processed_items))
         else:
             return tuple(processed_items)
     elif isinstance(obj, str) and re.match(r"^__(\d+)__$", obj):
-        # 处理特殊数值模式 "__x__"
+        # Handle special numeric pattern "__x__"
         return int(re.match(r"^__(\d+)__$", obj).group(1))
     elif isinstance(obj, str) and re.match(r"^__(\d+\.\d+)__$", obj):
-        # 处理特殊数值模式 "__x.y__"
+        # Handle special float pattern "__x.y__"
         return float(re.match(r"^__(\d+\.\d+)__$", obj).group(1))
     else:
-        # 基础类型直接返回
+        # Return primitive types as-is
         return obj
 
 def is_numeric_value(value: Any) -> bool:
     """
-    检查值是否为数值型，包括特殊数值模式
+    Check if a value represents numeric data, including special patterns.
+    
+    This function identifies values that should be considered for duplicate
+    detection based on their numeric content.
+    
+    Args:
+        value: Value to check for numeric nature
+        
+    Returns:
+        True if the value represents numeric data, False otherwise
     """
     if isinstance(value, (int, float)):
         return True
     elif isinstance(value, list):
-        # 递归检查列表中的元素
+        # Recursively check list elements
         return all(is_numeric_value(item) for item in value)
     elif isinstance(value, str) and re.match(r"^__(\d+(\.\d+)?)__$", value):
-        # 特殊数值模式字符串
+        # Special numeric pattern strings
         return True
     elif isinstance(value, tuple):
-        # 递归检查元组中的元素
+        # Recursively check tuple elements
         return all(is_numeric_value(item) for item in value)
     elif isinstance(value, dict):
-        # 嵌套字典需要递归处理
+        # Nested dictionaries need recursive processing
         return True
     return False
 
 def extract_numeric_values(config: Dict[str, Any], prefix: str = "") -> List[Tuple[str, Any]]:
     """
-    递归提取嵌套字典中的所有数值型键值对
+    Recursively extract all numeric key-value pairs from nested dictionaries.
+    
+    This function traverses nested configuration dictionaries and extracts
+    all values that represent numeric data for deduplication comparison.
+    
+    Args:
+        config: Configuration dictionary to process
+        prefix: Current key path prefix for nested traversal
+        
+    Returns:
+        List of (key_path, hashable_value) tuples for all numeric values
     """
     numeric_items = []
     
     for key, value in config.items():
         if key == '_query':
-            continue
-        # 创建带前缀的完整键名
+            continue  # Skip query fields as they're not part of core configuration
+        
+        # Create full key path with prefix
         full_key = f"{prefix}.{key}" if prefix else key
         
-        # 检查是否为数值型
+        # Check if value is numeric
         if is_numeric_value(value):
             if isinstance(value, dict):
-                # 递归处理嵌套字典
+                # Recursively process nested dictionaries
                 numeric_items.extend(extract_numeric_values(value, full_key))
             else:
-                # 对数值型值进行规范化处理（传递键名信息）
+                # Normalize numeric values for comparison (pass key name for special handling)
                 hashable_value = to_hashable(value, key_name=key)
                 numeric_items.append((full_key, hashable_value))
     
@@ -82,75 +112,102 @@ def extract_numeric_values(config: Dict[str, Any], prefix: str = "") -> List[Tup
 
 def get_numeric_signature(config: Dict[str, Any]) -> Tuple[Tuple[str, Any]]:
     """
-    提取config中的数值特征签名，支持嵌套字典和特殊数值模式
+    Extract numeric feature signature from configuration data.
+    
+    This function creates a unique signature for each configuration by
+    extracting and sorting all numeric values. Records with identical
+    signatures are considered duplicates.
+    
+    Args:
+        config: Configuration dictionary from a data record
+        
+    Returns:
+        Tuple of sorted (key_path, value) pairs representing the numeric signature
     """
-    # 递归提取所有数值型键值对
+    # Extract all numeric key-value pairs recursively
     numeric_items = extract_numeric_values(config)
     
-    # 按key排序以确保顺序一致性
+    # Sort by key path to ensure consistent ordering
     numeric_items.sort(key=lambda x: x[0])
     
     return tuple(numeric_items)
 
 def deduplicate_jsonl_file(input_path: str, output_path: str) -> None:
     """
-    对单个JSONL文件进行去重处理，将结果写入输出文件
+    Remove duplicates from a single JSONL file and write results to output file.
+    
+    This function processes a JSONL file, identifies records with duplicate
+    numeric configurations, and writes only unique records to the output file.
+    
+    Args:
+        input_path: Path to the input JSONL file
+        output_path: Path to the output JSONL file for unique records
     """
-    # 确保输出目录存在
+    # Ensure output directory exists
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     
     with open(input_path, 'r', encoding='utf-8') as infile:
-        signatures_seen = set()
-        unique_records = []
+        signatures_seen = set()  # Track seen numeric signatures
+        unique_records = []      # Store unique records
         
-        # 遍历文件的每一行
+        # Process each line in the file
         for line in infile:
             try:
                 record = json.loads(line)
                 config = record.get("config", {})
                 
-                # 获取数值特征签名
+                # Generate numeric signature for duplicate detection
                 signature = get_numeric_signature(config)
                 
-                # 如果没有数值型配置项或者签名未出现过，则保留该记录
+                # Keep record if it has no numeric config or signature is new
                 if not signature or signature not in signatures_seen:
                     unique_records.append(line)
                     if signature:
                         signatures_seen.add(signature)
                     
             except json.JSONDecodeError:
-                print(f"警告: 跳过无效的JSON行: {line.strip()}")
+                print(f"Warning: Skipping invalid JSON line: {line.strip()}")
                 continue
         
-        # 写入去重后的记录到输出文件
+        # Write deduplicated records to output file
         with open(output_path, 'w', encoding='utf-8') as outfile:
             outfile.writelines(unique_records)
 
 def process_jsonl_files(input_dir: str, output_dir: str) -> None:
     """
-    处理输入目录中的所有jsonl文件，去重后输出到输出目录
+    Process all JSONL files in input directory and write deduplicated results to output directory.
+    
+    This function processes each JSONL file in the input directory, removes
+    duplicates based on numeric configuration signatures, and saves the
+    cleaned data to corresponding files in the output directory.
+    
+    Args:
+        input_dir: Input directory containing JSONL files
+        output_dir: Output directory for deduplicated JSONL files
     """
-    # 确保输出目录存在
+    # Ensure output directory exists
     os.makedirs(output_dir, exist_ok=True)
     
-    # 遍历输入目录中的所有jsonl文件
+    # Process all JSONL files in the input directory
     for filename in os.listdir(input_dir):
         if filename.endswith('.jsonl'):
             input_path = os.path.join(input_dir, filename)
             output_path = os.path.join(output_dir, filename)
             
-            print(f"正在处理文件: {filename}")
+            print(f"Processing file: {filename}")
             deduplicate_jsonl_file(input_path, output_path)
-            print(f"已保存去重结果到: {output_path}")
+            print(f"Saved deduplicated results to: {output_path}")
 
-# 使用示例
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='处理JSONL文件')
-    parser.add_argument('-i', '--input', default='puzzle_clone_public/data', help='输入文件夹路径，默认为"puzzle_clone_public/data"')
-    parser.add_argument('-o', '--output', default='puzzle_clone_public/deduplicated_data', help='输出文件夹路径，默认为puzzle_clone_public/deduplicated_data')
+    """Main entry point for the deduplication tool."""
+    parser = argparse.ArgumentParser(description='Remove duplicates from JSONL files based on numeric configuration signatures')
+    parser.add_argument('-i', '--input', default='puzzle_clone_public/data', 
+                       help='Input directory path (default: "puzzle_clone_public/data")')
+    parser.add_argument('-o', '--output', default='puzzle_clone_public/deduplicated_data', 
+                       help='Output directory path (default: "puzzle_clone_public/deduplicated_data")')
     
     args = parser.parse_args()
     
-    print("开始处理文件去重...")
+    print("Starting file deduplication...")
     process_jsonl_files(args.input, args.output)
-    print("去重处理完成！")
+    print("Deduplication completed!")

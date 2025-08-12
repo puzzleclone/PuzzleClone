@@ -6,7 +6,20 @@ from typing import Dict, Any, Tuple, List, Union
 import argparse
 
 def to_hashable(obj: Any, key_name: str = None) -> Any:
-    """将可能的数据结构转换为可哈希类型，支持特殊数值模式和嵌套字典"""
+    """
+    Convert data structures to hashable types for duplicate detection.
+    
+    This function handles nested dictionaries, lists, and special numeric patterns
+    used in puzzle configuration data. It ensures consistent comparison by
+    converting complex structures to hashable tuples.
+    
+    Args:
+        obj: The object to convert (dict, list, tuple, or primitive type)
+        key_name: Name of the current key being processed (used for special handling)
+        
+    Returns:
+        Hashable representation of the input object
+    """
     if isinstance(obj, dict):
         return tuple(sorted((k, to_hashable(v, key_name=k)) for k, v in obj.items()))
     elif isinstance(obj, list) or isinstance(obj, tuple):
@@ -29,21 +42,49 @@ def to_hashable(obj: Any, key_name: str = None) -> Any:
         return obj
 
 def is_numeric_value(value: Any) -> bool:
-    """检查值是否为数值型，包括特殊数值模式"""
+    """
+    Check if a value represents numeric data, including special patterns.
+    
+    This function identifies values that should be considered for duplicate
+    detection based on their numeric content, including special encoded patterns.
+    
+    Args:
+        value: Value to check for numeric nature
+        
+    Returns:
+        True if the value represents numeric data, False otherwise
+    """
     if isinstance(value, (int, float)):
         return True
     elif isinstance(value, list):
+        # Recursively check list elements
         return all(is_numeric_value(item) for item in value)
     elif isinstance(value, str) and re.match(r"^__(\d+(\.\d+)?)__$", value):
+        # Special numeric pattern strings
         return True
     elif isinstance(value, tuple):
+        # Recursively check tuple elements
         return all(is_numeric_value(item) for item in value)
     elif isinstance(value, dict):
+        # Nested dictionaries need recursive processing
         return True
     return False
 
 def extract_numeric_values(config: Dict[str, Any], prefix: str = "") -> List[Tuple[str, Any]]:
-    """递归提取嵌套字典中的所有数值型键值对"""
+    """
+    Recursively extract all numeric key-value pairs from nested dictionaries.
+    
+    This function traverses nested configuration dictionaries and extracts
+    all values that represent numeric data, creating a flattened list of
+    key paths and their corresponding values.
+    
+    Args:
+        config: Configuration dictionary to process
+        prefix: Current key path prefix for nested traversal
+        
+    Returns:
+        List of (key_path, hashable_value) tuples for all numeric values
+    """
     numeric_items = []
     
     for key, value in config.items():
