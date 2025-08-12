@@ -1,4 +1,4 @@
-# Data Processing Scripts for Puzzle Clone Dataset
+# Data Processing Scripts for PuzzleClone
 
 This directory contains a comprehensive set of Python scripts and tools for processing puzzle data into standardized benchmark format. The scripts handle difficulty calculation, duplicate detection and removal, and dataset splitting for machine learning workflows.
 
