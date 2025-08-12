@@ -66,5 +66,5 @@ queries:
       fields:
       - 0
       - 1
-      constraint: _opt[0][0] != names[query_p] and _opt[1][0] != query_job
+      constraint: "lambda l: all([item[0][0][0] != names[query_p] and item[0][1][0] != query_job for item in l])"
 desc: "现有{'、'.join(names)+str(len(names))}个人，关于他们的职业有以下几个条件成立：{extra1} {q1}\n"
