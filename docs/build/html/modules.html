@@ -210,6 +210,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="translator.html">translator module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="translator.html#translator.AnswerAssertionError"><code class="docutils literal notranslate"><span class="pre">AnswerAssertionError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="translator.html#translator.NoSolutionError"><code class="docutils literal notranslate"><span class="pre">NoSolutionError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="translator.html#translator.PuzzleGenerationError"><code class="docutils literal notranslate"><span class="pre">PuzzleGenerationError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="translator.html#translator.RandomGenerationError"><code class="docutils literal notranslate"><span class="pre">RandomGenerationError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="translator.html#translator.TooManySolutionsError"><code class="docutils literal notranslate"><span class="pre">TooManySolutionsError</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="translator.html#translator.ext"><code class="docutils literal notranslate"><span class="pre">ext()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="translator.html#translator.init_program"><code class="docutils literal notranslate"><span class="pre">init_program()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="translator.html#translator.parse_config_file"><code class="docutils literal notranslate"><span class="pre">parse_config_file()</span></code></a></li>
@@ -285,6 +290,87 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#module-utils.faker_utils">utils.faker_utils module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="utils.html#utils.faker_utils.get_faker"><code class="docutils literal notranslate"><span class="pre">get_faker()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#utils-mathexpr-generator-module">utils.mathexpr_generator module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Add"><code class="docutils literal notranslate"><span class="pre">Add</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Add.evaluate"><code class="docutils literal notranslate"><span class="pre">Add.evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Add.serialize"><code class="docutils literal notranslate"><span class="pre">Add.serialize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Add.to_latex"><code class="docutils literal notranslate"><span class="pre">Add.to_latex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Add.to_z3"><code class="docutils literal notranslate"><span class="pre">Add.to_z3()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Comparison"><code class="docutils literal notranslate"><span class="pre">Comparison</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Comparison.OPS"><code class="docutils literal notranslate"><span class="pre">Comparison.OPS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Comparison.evaluate"><code class="docutils literal notranslate"><span class="pre">Comparison.evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Comparison.serialize"><code class="docutils literal notranslate"><span class="pre">Comparison.serialize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Comparison.to_latex"><code class="docutils literal notranslate"><span class="pre">Comparison.to_latex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Comparison.to_z3"><code class="docutils literal notranslate"><span class="pre">Comparison.to_z3()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Constant"><code class="docutils literal notranslate"><span class="pre">Constant</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Constant.evaluate"><code class="docutils literal notranslate"><span class="pre">Constant.evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Constant.serialize"><code class="docutils literal notranslate"><span class="pre">Constant.serialize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Constant.to_latex"><code class="docutils literal notranslate"><span class="pre">Constant.to_latex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Constant.to_z3"><code class="docutils literal notranslate"><span class="pre">Constant.to_z3()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Divide"><code class="docutils literal notranslate"><span class="pre">Divide</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Divide.evaluate"><code class="docutils literal notranslate"><span class="pre">Divide.evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Divide.serialize"><code class="docutils literal notranslate"><span class="pre">Divide.serialize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Divide.to_latex"><code class="docutils literal notranslate"><span class="pre">Divide.to_latex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Divide.to_z3"><code class="docutils literal notranslate"><span class="pre">Divide.to_z3()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.mathexpr_generator.ExprNode"><code class="docutils literal notranslate"><span class="pre">ExprNode</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.ExprNode.evaluate"><code class="docutils literal notranslate"><span class="pre">ExprNode.evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.ExprNode.serialize"><code class="docutils literal notranslate"><span class="pre">ExprNode.serialize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.ExprNode.to_latex"><code class="docutils literal notranslate"><span class="pre">ExprNode.to_latex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.ExprNode.to_z3"><code class="docutils literal notranslate"><span class="pre">ExprNode.to_z3()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.mathexpr_generator.FormulaConfig"><code class="docutils literal notranslate"><span class="pre">FormulaConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.FormulaConfig.deserialize"><code class="docutils literal notranslate"><span class="pre">FormulaConfig.deserialize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.FormulaConfig.get_latex"><code class="docutils literal notranslate"><span class="pre">FormulaConfig.get_latex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.FormulaConfig.get_value"><code class="docutils literal notranslate"><span class="pre">FormulaConfig.get_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.FormulaConfig.get_z3_expr"><code class="docutils literal notranslate"><span class="pre">FormulaConfig.get_z3_expr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.FormulaConfig.serialize"><code class="docutils literal notranslate"><span class="pre">FormulaConfig.serialize()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Multiply"><code class="docutils literal notranslate"><span class="pre">Multiply</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Multiply.evaluate"><code class="docutils literal notranslate"><span class="pre">Multiply.evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Multiply.serialize"><code class="docutils literal notranslate"><span class="pre">Multiply.serialize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Multiply.to_latex"><code class="docutils literal notranslate"><span class="pre">Multiply.to_latex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Multiply.to_z3"><code class="docutils literal notranslate"><span class="pre">Multiply.to_z3()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Power"><code class="docutils literal notranslate"><span class="pre">Power</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Power.evaluate"><code class="docutils literal notranslate"><span class="pre">Power.evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Power.serialize"><code class="docutils literal notranslate"><span class="pre">Power.serialize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Power.to_latex"><code class="docutils literal notranslate"><span class="pre">Power.to_latex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Power.to_z3"><code class="docutils literal notranslate"><span class="pre">Power.to_z3()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Subtract"><code class="docutils literal notranslate"><span class="pre">Subtract</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Subtract.evaluate"><code class="docutils literal notranslate"><span class="pre">Subtract.evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Subtract.serialize"><code class="docutils literal notranslate"><span class="pre">Subtract.serialize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Subtract.to_latex"><code class="docutils literal notranslate"><span class="pre">Subtract.to_latex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Subtract.to_z3"><code class="docutils literal notranslate"><span class="pre">Subtract.to_z3()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Variable"><code class="docutils literal notranslate"><span class="pre">Variable</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Variable.evaluate"><code class="docutils literal notranslate"><span class="pre">Variable.evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Variable.serialize"><code class="docutils literal notranslate"><span class="pre">Variable.serialize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Variable.to_latex"><code class="docutils literal notranslate"><span class="pre">Variable.to_latex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="utils.html#utils.mathexpr_generator.Variable.to_z3"><code class="docutils literal notranslate"><span class="pre">Variable.to_z3()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.mathexpr_generator.build_system"><code class="docutils literal notranslate"><span class="pre">build_system()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.mathexpr_generator.generate_expr"><code class="docutils literal notranslate"><span class="pre">generate_expr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.mathexpr_generator.generate_formula"><code class="docutils literal notranslate"><span class="pre">generate_formula()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.mathexpr_generator.generate_formulas"><code class="docutils literal notranslate"><span class="pre">generate_formulas()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.mathexpr_generator.get_formula_value"><code class="docutils literal notranslate"><span class="pre">get_formula_value()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.mathexpr_generator.to_value"><code class="docutils literal notranslate"><span class="pre">to_value()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#module-utils.option_generator">utils.option_generator module</a><ul>

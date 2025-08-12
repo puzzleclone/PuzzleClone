@@ -4,18 +4,20 @@ import random
 import argparse
 from collections import defaultdict
 
-def extract_data(base_dir, output_dir, total_num=50, seed=42):
+def extract_data(base_dir, output_dir, total_num=50, seed=42, input_file='SFT.jsonl'):
     """
-    Extract balanced sample data from normal and hard training sets for SFT.
+    Extract balanced sample data from normal and hard training sets.
     
     This function samples problems from both normal and hard difficulty categories,
-    ensuring balanced representation across different puzzle types.
+    ensuring balanced representation across different puzzle types. It reads from
+    the specified input files in the data splitting pipeline output.
     
     Args:
-        base_dir: Base directory containing 'normal' and 'hard' subdirectories
+        base_dir: Base directory containing 'normal' and 'hard' subdirectories with training files
         output_dir: Output directory for sampled training data
         total_num: Total number of problems to sample per category
         seed: Random seed for reproducible sampling
+        input_file: Name of the input file to read from (default: 'SFT.jsonl')
     """
     # Set random seed for reproducible results
     random.seed(seed)
@@ -23,9 +25,9 @@ def extract_data(base_dir, output_dir, total_num=50, seed=42):
     # Ensure output directory exists
     os.makedirs(output_dir, exist_ok=True)
     
-    # Define training set file paths
-    normal_train_path = os.path.join(base_dir, 'normal', 'train.jsonl')
-    hard_train_path = os.path.join(base_dir, 'hard', 'train.jsonl')
+    # Define training set file paths (using specified input files from split_rl.py output)
+    normal_train_path = os.path.join(base_dir, 'normal', input_file)
+    hard_train_path = os.path.join(base_dir, 'hard', input_file)
     
     # Initialize data structure: organize problems by category and difficulty
     # Structure: {category: {'normal': [problem_list], 'hard': [problem_list]}}
@@ -41,7 +43,7 @@ def extract_data(base_dir, output_dir, total_num=50, seed=42):
                         category = item['source']
                         category_data[category]['normal'].append(item)
                 except json.JSONDecodeError:
-                    print(f"Warning: Skipping invalid JSON line (normal/train.jsonl)")
+                    print(f"Warning: Skipping invalid JSON line (normal/{input_file})")
     else:
         print(f"Error: Cannot find file {normal_train_path}")
         return
@@ -56,7 +58,7 @@ def extract_data(base_dir, output_dir, total_num=50, seed=42):
                         category = item['source']
                         category_data[category]['hard'].append(item)
                 except json.JSONDecodeError:
-                    print(f"Warning: Skipping invalid JSON line (hard/train.jsonl)")
+                    print(f"Warning: Skipping invalid JSON line (hard/{input_file})")
     else:
         print(f"Error: Cannot find file {hard_train_path}")
         return
@@ -133,11 +135,12 @@ def extract_data(base_dir, output_dir, total_num=50, seed=42):
 if __name__ == "__main__":
     """Main entry point for the SFT data extraction tool."""
     parser = argparse.ArgumentParser(description='Extract balanced sample data from normal and hard training sets by category')
-    parser.add_argument('--base_dir', required=True, help='Base directory containing normal and hard subdirectories')
+    parser.add_argument('--base_dir', required=True, help='Base directory containing normal and hard subdirectories with training files')
     parser.add_argument('--output_dir', default='selected_data', help='Output directory path')
     parser.add_argument('--total', type=int, default=50, help='Total number of problems to select per category')
     parser.add_argument('--seed', type=int, default=42, help='Random seed for reproducible results')
+    parser.add_argument('--input_file', default='SFT.jsonl', help='Input file name to read from (default: SFT.jsonl, alternatives: RL_train.jsonl, RL_validate.jsonl, Test.jsonl)')
     
     args = parser.parse_args()
     
-    extract_data(args.base_dir, args.output_dir, total_num=args.total, seed=args.seed)
+    extract_data(args.base_dir, args.output_dir, total_num=args.total, seed=args.seed, input_file=args.input_file)

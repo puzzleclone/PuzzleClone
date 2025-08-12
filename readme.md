@@ -57,6 +57,9 @@ This uses the `-g` flag to load existing problem data and applies a new problem 
 python translator.py -d cases/graduation/new_spec.json -g old_data.jsonl -o new_data.jsonl
 ```
 
+### Data transformation
+A handful of [scripts](https://github.com/puzzleclone/PuzzleClone/tree/main/data_processing_scripts) are provided to transform the data generated above to the standard formats for a benchmark. Please refer to the scripts and documentation in the `data_processing_scripts/` directory.
+
 ### Evaluation
 
 See our evaluation toolkit [PolyhedronEvaluator](https://github.com/puzzleclone/PolyhedronEvaluator).

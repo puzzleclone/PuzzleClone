@@ -7,14 +7,14 @@ This directory contains a comprehensive set of Python scripts and tools for proc
 For a streamlined processing workflow, use the main transformation script:
 
 ```bash
-# Process from raw data (complete pipeline)
-./transform_data.sh --raw-input /path/to/raw/data --dsl-dir /path/to/dsl -o /path/to/output -r /path/to/reports
+# Process from raw data (most common case - complete pipeline)
+./transform_data.sh -i /path/to/raw/data --dsl-dir /path/to/dsl -o /path/to/output -r /path/to/reports
 
-# Process from formatted data (skips formatting)
-./transform_data.sh -i /path/to/formatted/data -o /path/to/output -r /path/to/reports
+# Process from already formatted data (skips formatting)
+./transform_data.sh --formatted-input /path/to/formatted/data -o /path/to/output -r /path/to/reports
 
 # Skip specific steps
-./transform_data.sh -i /path/to/formatted/data -o /path/to/output -r /path/to/reports --skip-difficulty --skip-duplicate
+./transform_data.sh -i /path/to/raw/data -o /path/to/output -r /path/to/reports --skip-difficulty --skip-duplicate
 
 # View all options
 ./transform_data.sh --help
@@ -23,7 +23,7 @@ For a streamlined processing workflow, use the main transformation script:
 **Required Parameters:**
 - Output directory (`-o/--output`): Where processed data will be stored
 - Reports directory (`-r/--reports`): Where analysis reports will be stored  
-- Input source: Either `--raw-input` (for full pipeline) OR `-i/--input` (for partial pipeline)
+- Input source: Either `-i/--input` (for raw data) OR `--formatted-input` (for already formatted data)
 
 ## 📁 Directory Structure
 
@@ -37,7 +37,7 @@ data_processing_scripts/
 ├── check_duplicate.py        # Duplicate configuration detection
 ├── deduplicate.py           # Duplicate removal
 ├── split_rl.py              # Dataset splitting for ML
-└── gen_sft_data_divided.py  # SFT data sampling
+└── gen_sft_data.py  # SFT data sampling
 ```
 
 ## 🔧 Individual Scripts
@@ -82,7 +82,7 @@ Each record gets enhanced with:
 - `eval_type`: Evaluation method specification  
 - `source`: Source category (from filename)
 - `id`: Unique identifier (if --add-ids used)
-- `parameters.vars_scale`: Normalized variable difficulty scale
+- `parameters.vars_scale`: A scale measuring the quantitative difficulty of the puzzle
 
 ### 2. Difficulty Calculation (`cal_difficulty.py`)
 
@@ -177,34 +177,38 @@ python split_rl.py -i input_dir -o output_dir --seed 123
 ```
 output_dir/
 ├── normal/
-│   ├── train.jsonl      # Full training set
-│   ├── train_rl.jsonl   # RL training subset
-│   ├── validate.jsonl   # Validation set
-│   └── test.jsonl       # Test set
+│   ├── SFT.jsonl         # SFT training set (supervised fine-tuning)
+│   ├── RL_train.jsonl    # RL training subset
+│   ├── RL_validate.jsonl # RL validation set
+│   └── Test.jsonl        # Test set
 └── hard/
-    ├── train.jsonl      # Full training set
-    ├── train_rl.jsonl   # RL training subset
-    ├── validate.jsonl   # Validation set
-    └── test.jsonl       # Test set
+    ├── SFT.jsonl         # SFT training set (supervised fine-tuning)
+    ├── RL_train.jsonl    # RL training subset
+    ├── RL_validate.jsonl # RL validation set
+    └── Test.jsonl        # Test set
 ```
 
-### 5. SFT Data Sampling (`gen_sft_data_divided.py`)
+### 5. SFT Data Sampling (`gen_sft_data.py`)
 
-Extracts balanced samples from training sets for supervised fine-tuning.
+Extracts balanced samples from training sets for supervised fine-tuning or other ML tasks.
 
 **Features:**
 - Samples from both normal and hard difficulty categories
 - Maintains category balance in selected data
 - Provides detailed sampling statistics
+- Supports different input file types (SFT.jsonl, RL_train.jsonl, etc.)
 
 **Usage:**
 
 ```bash
-# Extract 50 problems per category (default)
-python gen_sft_data_divided.py --base_dir splitted_data --output_dir sft_data
+# Extract 50 problems per category from SFT.jsonl files (default)
+python gen_sft_data.py --base_dir splitted_data --output_dir sft_data
 
 # Custom sample size and seed
-python gen_sft_data_divided.py --base_dir splitted_data --output_dir sft_data --total 100 --seed 42
+python gen_sft_data.py --base_dir splitted_data --output_dir sft_data --total 100 --seed 42
+
+# Use RL training data instead of SFT data
+python gen_sft_data.py --base_dir splitted_data --output_dir rl_samples --input_file RL_train.jsonl
 ```
 
 ## 🔄 Complete Pipeline Workflow
@@ -256,7 +260,7 @@ python split_rl.py -i deduplicated_data -o final_dataset
 
 ### Stage 5: SFT Sample Generation (Optional)
 ```bash
-python gen_sft_data_divided.py --base_dir final_dataset --output_dir sft_samples
+python gen_sft_data.py --base_dir final_dataset --output_dir sft_samples
 ```
 - Extracts balanced samples for fine-tuning
 - Maintains category representation

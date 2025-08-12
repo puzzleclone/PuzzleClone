@@ -47,6 +47,11 @@
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">PuzzleClone</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="model.html">model package</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">translator module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#translator.AnswerAssertionError"><code class="docutils literal notranslate"><span class="pre">AnswerAssertionError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#translator.NoSolutionError"><code class="docutils literal notranslate"><span class="pre">NoSolutionError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#translator.PuzzleGenerationError"><code class="docutils literal notranslate"><span class="pre">PuzzleGenerationError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#translator.RandomGenerationError"><code class="docutils literal notranslate"><span class="pre">RandomGenerationError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#translator.TooManySolutionsError"><code class="docutils literal notranslate"><span class="pre">TooManySolutionsError</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#translator.ext"><code class="docutils literal notranslate"><span class="pre">ext()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#translator.init_program"><code class="docutils literal notranslate"><span class="pre">init_program()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#translator.parse_config_file"><code class="docutils literal notranslate"><span class="pre">parse_config_file()</span></code></a></li>
@@ -103,6 +108,41 @@
              
   <section id="module-translator">
 <span id="translator-module"></span><h1>translator module<a class="headerlink" href="#module-translator" title="Link to this heading"></a></h1>
+<dl class="py exception">
+<dt class="sig sig-object py" id="translator.AnswerAssertionError">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">translator.</span></span><span class="sig-name descname"><span class="pre">AnswerAssertionError</span></span><a class="reference internal" href="_modules/translator.html#AnswerAssertionError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#translator.AnswerAssertionError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#translator.PuzzleGenerationError" title="translator.PuzzleGenerationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">PuzzleGenerationError</span></code></a></p>
+<p>Raised when answer assertion validation fails</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="translator.NoSolutionError">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">translator.</span></span><span class="sig-name descname"><span class="pre">NoSolutionError</span></span><a class="reference internal" href="_modules/translator.html#NoSolutionError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#translator.NoSolutionError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#translator.PuzzleGenerationError" title="translator.PuzzleGenerationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">PuzzleGenerationError</span></code></a></p>
+<p>Raised when Z3 solver cannot find any solution to the constraints</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="translator.PuzzleGenerationError">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">translator.</span></span><span class="sig-name descname"><span class="pre">PuzzleGenerationError</span></span><a class="reference internal" href="_modules/translator.html#PuzzleGenerationError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#translator.PuzzleGenerationError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Base exception for puzzle generation errors</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="translator.RandomGenerationError">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">translator.</span></span><span class="sig-name descname"><span class="pre">RandomGenerationError</span></span><a class="reference internal" href="_modules/translator.html#RandomGenerationError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#translator.RandomGenerationError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#translator.PuzzleGenerationError" title="translator.PuzzleGenerationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">PuzzleGenerationError</span></code></a></p>
+<p>Raised when random number/option generation fails after multiple attempts</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="translator.TooManySolutionsError">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">translator.</span></span><span class="sig-name descname"><span class="pre">TooManySolutionsError</span></span><a class="reference internal" href="_modules/translator.html#TooManySolutionsError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#translator.TooManySolutionsError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#translator.PuzzleGenerationError" title="translator.PuzzleGenerationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">PuzzleGenerationError</span></code></a></p>
+<p>Raised when the number of solutions exceeds the maximum allowed</p>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="translator.ext">
 <span class="sig-prename descclassname"><span class="pre">translator.</span></span><span class="sig-name descname"><span class="pre">ext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/translator.html#ext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#translator.ext" title="Link to this definition"></a></dt>

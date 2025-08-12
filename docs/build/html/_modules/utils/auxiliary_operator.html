@@ -109,7 +109,7 @@
 
 <span class="sd">        type (Union[str, List[str]]): Variable type definition, supports:</span>
 
-<span class="sd">            - &#39;Int&#39; (default)/&#39;Bool&#39;/&#39;Real&#39;/&#39;BitVec&#39;</span>
+<span class="sd">            - &#39;Int&#39; (default)/&#39;Bool&#39;/&#39;Real&#39;/&#39;Float&#39;/&#39;BitVec&#39;</span>
 
 <span class="sd">            - Type list (needs equal length when attr exists)</span>
 
@@ -291,7 +291,7 @@
 <span class="sd">            type_str: Type identifier (case-insensitive)</span>
 <span class="sd">                - &#39;int&#39; → z3.Int</span>
 <span class="sd">                - &#39;bool&#39; → z3.Bool</span>
-<span class="sd">                - &#39;real&#39; → z3.Real</span>
+<span class="sd">                - &#39;real&#39; / &#39;float&#39; → z3.Real</span>
 <span class="sd">                - &#39;bv*&#39; → Bit vector (e.g., bv16 → 16-bit)</span>
 
 <span class="sd">        Returns:</span>
@@ -305,7 +305,7 @@
             <span class="k">return</span> <span class="n">Int</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">type_str</span> <span class="o">==</span> <span class="s2">&quot;bool&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">Bool</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">type_str</span> <span class="o">==</span> <span class="s2">&quot;real&quot;</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">type_str</span> <span class="o">==</span> <span class="s2">&quot;real&quot;</span> <span class="ow">or</span> <span class="n">type_str</span> <span class="o">==</span> <span class="s2">&quot;float&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">Real</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">type_str</span> <span class="o">==</span> <span class="s2">&quot;bitvec&quot;</span> <span class="ow">or</span> <span class="n">type_str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;bv&quot;</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">type_str</span> <span class="o">==</span> <span class="s2">&quot;bitvec&quot;</span><span class="p">:</span>

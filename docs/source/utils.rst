@@ -28,6 +28,14 @@ utils.faker\_utils module
    :show-inheritance:
    :undoc-members:
 
+utils.mathexpr\_generator module
+-------------------------------
+
+.. automodule:: utils.mathexpr_generator
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 utils.option\_generator module
 ------------------------------
 

@@ -102,7 +102,58 @@ def to_unique(l: list):
     """
 ```
 
-For the complete list of all built-in operators and their details, please refer to our full **[API Documentation](operators.md)**.
+### Mathematical Expression Generators
+
+PuzzleClone includes specialized operators for generating complex mathematical expressions and equation systems. These are particularly useful for creating algebra problems, optimization puzzles, and constraint satisfaction problems.
+
+```python
+def generate_formula(vars_num, is_cond=False, allow_power=True, max_depth=5):
+    """
+    Generate a single mathematical formula expression.
+    
+    - vars_num (int): Number of variables (determines variable index range 0 to vars_num-1)
+    - is_cond (bool): Whether to generate comparison expressions (like x > 0)
+    - allow_power (bool): Whether to allow power operations (x², x³)
+    - max_depth (int): Maximum expression tree depth (controls complexity)
+    
+    Returns a serialized formula that can be used with Z3 solver and converted to LaTeX.
+    """
+
+def generate_formulas(formula_num, vars_num, is_cond=False, allow_power=True, max_depth=5):
+    """
+    Generate multiple valid mathematical formulas for equation systems.
+    
+    - formula_num (int): Number of formulas to generate
+    - vars_num (int): Number of variables
+    - is_cond (bool): Generate comparison expressions instead of equations
+    - allow_power (bool): Allow power operations (x², x³)
+    - max_depth (int): Expression complexity control
+    
+    Returns a list of serialized formulas with guaranteed validity and uniqueness.
+    """
+
+def build_system(configs, vars, var_names=None):
+    """
+    Build complete equation systems with Z3 integration and LaTeX output.
+    
+    - configs (list): List of serialized formula configurations
+    - vars (list): Z3 variable list
+    - var_names (list, optional): Variable names for LaTeX display
+    
+    Returns a dictionary with Z3 expressions, constraints, and LaTeX formatting.
+    """
+```
+
+**Example Usage:**
+```yaml
+# Generate a system of 3 equations with 2 variables
+equations: "{{ generate_formulas(3, 2, false, true, 4) }}"
+
+# Generate inequality constraints
+constraints: "{{ generate_formulas(2, 3, true, false, 3) }}"
+```
+
+For the complete list of all built-in operators and their details, please refer to our full **[API Documentation](https://puzzleclone.github.io/PuzzleClone/api/index.html)**.
 
 ## Custom Operators
 

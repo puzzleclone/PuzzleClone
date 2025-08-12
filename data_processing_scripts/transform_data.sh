@@ -20,16 +20,16 @@ show_help() {
     echo "Usage: $0 [OPTIONS]"
     echo ""
     echo "Basic Usage:"
-    echo "  # Process from raw data (includes formatting)"
-    echo "  $0 --raw-input /path/to/raw/data --dsl-dir /path/to/dsl -o /path/to/output [-r /path/to/reports]"
+    echo "  # Process from raw data (most common case)"
+    echo "  $0 -i /path/to/raw/data --dsl-dir /path/to/dsl -o /path/to/output [-r /path/to/reports]"
     echo ""
-    echo "  # Process from formatted data (skips formatting)"
-    echo "  $0 -i /path/to/formatted/data -o /path/to/output [-r /path/to/reports]"
+    echo "  # Process from already formatted data (skip formatting)"
+    echo "  $0 --formatted-input /path/to/formatted/data -o /path/to/output [-r /path/to/reports]"
     echo ""
     echo "Options:"
-    echo "  --raw-input DIR      Raw input data directory (required for complete pipeline)"
-    echo "  --dsl-dir DIR        DSL specification directory (optional, used with --raw-input)"
-    echo "  -i, --input DIR      Formatted input data directory (required when skipping formatting)"
+    echo "  -i, --input DIR      Raw input data directory (required for most use cases)"
+    echo "  --dsl-dir DIR        DSL specification directory (optional, used with -i/--input)"
+    echo "  --formatted-input DIR Formatted input data directory (use when skipping formatting)"
     echo "  -o, --output DIR     Output base directory (required)"
     echo "  -r, --reports DIR    Reports output directory (optional, if not specified, reports are skipped)"
     echo "  --skip-format        Explicitly skip data formatting step"
@@ -42,20 +42,20 @@ show_help() {
     echo ""
     echo "Required Parameters:"
     echo "  - Output directory (-o/--output): Where processed data will be stored"
-    echo "  - Input source: Either --raw-input (for full pipeline) OR -i/--input (for partial pipeline)"
+    echo "  - Input source: Either -i/--input (for raw data) OR --formatted-input (for already formatted data)"
     echo ""
     echo "Optional Parameters:"
     echo "  - Reports directory (-r/--reports): Where analysis reports will be stored (if not specified, reports are skipped)"
     echo ""
     echo "Pipeline Steps:"
-    echo "  1. Format raw data with metadata and variable scaling (optional, skipped if using -i)"
+    echo "  1. Format raw data with metadata and variable scaling (skipped if using --formatted-input)"
     echo "  2. Calculate difficulty scores for all problems"
     echo "  3. Check for duplicate configurations and remove duplicates"
     echo "  4. Split data into train/validate/test sets"
     echo ""
     echo "Usage Modes:"
-    echo "  1. Full Pipeline: Use --raw-input to process from raw data through all steps"
-    echo "  2. Partial Pipeline: Use -i/--input to start from already formatted data"
+    echo "  1. Full Pipeline: Use -i/--input to process from raw data through all steps"
+    echo "  2. Partial Pipeline: Use --formatted-input to start from already formatted data"
     echo "  3. Custom Pipeline: Use --skip-* flags to skip specific processing steps"
     echo ""
     echo "Output Structure:"
@@ -117,7 +117,7 @@ ensure_dir() {
 parse_args() {
     RAW_INPUT_DIR=""
     DSL_DIR=""
-    INPUT_DIR=""
+    FORMATTED_INPUT_DIR=""
     OUTPUT_DIR=""
     REPORTS_DIR=""
     SKIP_FORMAT=false
@@ -126,11 +126,11 @@ parse_args() {
     SKIP_SPLIT=false
     ADD_IDS=false
     KEEP_REPORTS=false
-    USER_PROVIDED_INPUT=false
+    USER_PROVIDED_FORMATTED=false
     
     while [[ $# -gt 0 ]]; do
         case $1 in
-            --raw-input)
+            -i|--input)
                 RAW_INPUT_DIR="$2"
                 shift 2
                 ;;
@@ -138,9 +138,9 @@ parse_args() {
                 DSL_DIR="$2"
                 shift 2
                 ;;
-            -i|--input)
-                INPUT_DIR="$2"
-                USER_PROVIDED_INPUT=true
+            --formatted-input)
+                FORMATTED_INPUT_DIR="$2"
+                USER_PROVIDED_FORMATTED=true
                 shift 2
                 ;;
             -o|--output)
@@ -188,7 +188,7 @@ parse_args() {
     done
     
     # Auto-skip formatting if user provided formatted input directory
-    if [[ "$USER_PROVIDED_INPUT" == true && "$SKIP_FORMAT" == false ]]; then
+    if [[ "$USER_PROVIDED_FORMATTED" == true && "$SKIP_FORMAT" == false ]]; then
         SKIP_FORMAT=true
         log "Auto-skipping format step since formatted input directory was provided"
     fi
@@ -203,20 +203,23 @@ parse_args() {
     # Validate input paths based on mode
     if [[ "$SKIP_FORMAT" == false ]]; then
         if [[ -z "$RAW_INPUT_DIR" ]]; then
-            log_error "Raw input directory is required when not skipping format. Use --raw-input to specify."
+            log_error "Raw input directory is required when not skipping format. Use -i or --input to specify."
             show_help
             exit 1
         fi
         # Set default INPUT_DIR for formatted data if not provided
-        if [[ -z "$INPUT_DIR" ]]; then
+        if [[ -z "$FORMATTED_INPUT_DIR" ]]; then
             INPUT_DIR="$OUTPUT_DIR/1_data_formatted"
+        else
+            INPUT_DIR="$FORMATTED_INPUT_DIR"
         fi
     else
-        if [[ -z "$INPUT_DIR" ]]; then
-            log_error "Formatted input directory is required when skipping format. Use -i or --input to specify."
+        if [[ -z "$FORMATTED_INPUT_DIR" ]]; then
+            log_error "Formatted input directory is required when skipping format. Use --formatted-input to specify."
             show_help
             exit 1
         fi
+        INPUT_DIR="$FORMATTED_INPUT_DIR"
     fi
 }
 
@@ -269,7 +272,7 @@ run_pipeline() {
         log "Raw input directory: $RAW_INPUT_DIR"
         log "DSL directory: $DSL_DIR"
     fi
-    log "Input directory: $INPUT_DIR"
+    log "Working input directory: $INPUT_DIR"
     log "Output directory: $OUTPUT_DIR"
     if [[ -n "$REPORTS_DIR" ]]; then
         log "Reports directory: $REPORTS_DIR"
