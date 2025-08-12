@@ -126,7 +126,7 @@ msgid "Optional[List[str]]"
 msgstr ""
 
 #: of utils.auxiliary_operator.CustomSym:24
-msgid "变量类型定义，支持： - 'Int' (默认)/'Bool'/'Real'/'BitVec' - 类型列表（当attr存在时需等长）"
+msgid "变量类型定义，支持： - 'Int' (默认)/'Bool'/'Real'/'Float'/'BitVec' - 类型列表（当attr存在时需等长）"
 msgstr ""
 
 #: of utils.auxiliary_operator.CustomSym:28

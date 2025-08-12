@@ -9,7 +9,7 @@ variables:
   sudoku:
     formula: generate_sudoku()
   filled_pos:
-    formula: generate_sudoku_positions(filled_num)
+    formula: generate_sudoku_positions(81 - filled_num)
   filled_id:
     formula: "['x' + str(i) for i in range(81)]"
   sudoku_desc:

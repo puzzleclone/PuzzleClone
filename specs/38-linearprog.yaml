@@ -23,7 +23,7 @@ symbols:
   vars:
     source:
     - var_names
-    type: real
+    type: float
 conditions:
   domains:
     formula: And([And(x >= -max_domain[i], x <= max_domain[i]) for i,x in enumerate(list(vars))])

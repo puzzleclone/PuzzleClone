@@ -46,8 +46,8 @@ symbols:
     source:
     - stations_id
     type:
-    - Real
-    - Real
+    - float
+    - float
     attr:
     - g_added
     - g_left

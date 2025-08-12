@@ -146,7 +146,7 @@ msgid "Variable type definition, supports:"
 msgstr ""
 
 #: of utils.auxiliary_operator.CustomSym:29
-msgid "'Int' (default)/'Bool'/'Real'/'BitVec'"
+msgid "'Int' (default)/'Bool'/'Real'/'Float'/'BitVec'"
 msgstr ""
 
 #: of utils.auxiliary_operator.CustomSym:31

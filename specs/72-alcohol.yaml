@@ -30,12 +30,12 @@ variables:
   compare_name_list:
     formula: generate_compare_name_list(alcohol_name_list,num_alcohol-2)
   compare_list:
-    formula: "[randint(down_compare,up_compare) for _ in range(num_alcohol-2)]"
+    formula: "[randint(int(down_compare),int(up_compare)) for _ in range(num_alcohol-2)]"
 symbols:
   alcohol_volume:
     source:
     - alcohol_name_list
-    type: real
+    type: float
 conditions:
   non_negative_numbers:
     formula: And(alcohol_volume[x] > 0 for x in alcohol_name_list)

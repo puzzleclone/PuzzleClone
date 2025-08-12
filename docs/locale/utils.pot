@@ -133,7 +133,7 @@ msgid "Variable type definition, supports:"
 msgstr ""
 
 #: ../../utils/auxiliary_operator.py:docstring of utils.auxiliary_operator.CustomSym:29
-msgid "'Int' (default)/'Bool'/'Real'/'BitVec'"
+msgid "'Int' (default)/'Bool'/'Real'/'Float'/'BitVec'"
 msgstr ""
 
 #: ../../utils/auxiliary_operator.py:docstring of utils.auxiliary_operator.CustomSym:31

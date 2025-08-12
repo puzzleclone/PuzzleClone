@@ -23,7 +23,7 @@ symbols:
   vars:
     source:
     - "['total_s', 't1', 't2']"
-    type: real
+    type: float
 conditions:
   non_negative_numbers:
     formula: And([x > 0 for x in vars])

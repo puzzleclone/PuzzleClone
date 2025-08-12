@@ -36,7 +36,7 @@ class CustomSym(dict):
 
         type (Union[str, List[str]]): Variable type definition, supports:
 
-            - 'Int' (default)/'Bool'/'Real'/'BitVec'
+            - 'Int' (default)/'Bool'/'Real'/'Float'/'BitVec'
 
             - Type list (needs equal length when attr exists)
 
@@ -218,7 +218,7 @@ class CustomSym(dict):
             type_str: Type identifier (case-insensitive)
                 - 'int' → z3.Int
                 - 'bool' → z3.Bool
-                - 'real' → z3.Real
+                - 'real' / 'float' → z3.Real
                 - 'bv*' → Bit vector (e.g., bv16 → 16-bit)
 
         Returns:
@@ -232,7 +232,7 @@ class CustomSym(dict):
             return Int(name)
         elif type_str == "bool":
             return Bool(name)
-        elif type_str == "real":
+        elif type_str == "real" or type_str == "float":
             return Real(name)
         elif type_str == "bitvec" or type_str.startswith("bv"):
             if type_str == "bitvec":

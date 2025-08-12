@@ -23,7 +23,7 @@ symbols:
   vars:
     source:
     - var_names
-    type: real
+    type: float
 conditions:
   cond:
     formula: And(*(build_system(cond_formulae_complete, vars, var_names)['z3_expr']))
