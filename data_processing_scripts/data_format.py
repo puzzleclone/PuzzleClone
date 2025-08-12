@@ -78,7 +78,10 @@ def process_jsonl_files(input_dir: str, output_dir: str, dsl_dir: str = None, ad
                     
                     # Add unique ID if requested
                     if add_ids and 'id' not in record:
-                        line_num_str = f"{line_number:04d}"
+                        # Determine the required zero-padding width based on total lines
+                        total_lines = sum(1 for _ in open(input_path, 'r', encoding='utf-8'))
+                        width = 4 if total_lines < 10000 else len(str(total_lines))
+                        line_num_str = f"{line_number:0{width}d}"
                         record['id'] = f"{source_value}-{line_num_str}"
                     
                     all_data.append(record)
