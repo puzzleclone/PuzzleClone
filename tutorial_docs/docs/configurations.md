@@ -2,8 +2,8 @@
 
 One of the most powerful features of PuzzleClone is its separation of a puzzle's **logic** from its **instance**.
 
-*   The **Specification File (`spec.yaml`)** serves as a plan for batch generation of puzzles, defining the puzzle's structure, rules, and how to randomize it.
-*   The **Configuration** is **instance-specific**, including every random choice made for one specific puzzle instance.
+*   The **Specification File (yaml)** serves as a plan for batch generation of puzzles, defining the puzzle's structure, rules, and how to randomize it.
+*   The **Configuration (JSON)** is **instance-specific**, including every random choice made for one specific puzzle instance.
 
 When you have both the specification file and the configuration, you can perfectly recreate a unique puzzle. This separation offers two key advantages:
 
