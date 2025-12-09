@@ -275,16 +275,22 @@ The description text associated with each symbol. To refer to the symbol key, on
 
 **Example:**
 ```yaml
+# Seed puzzle: There are three boys: A, B and C. One boy broke the vase. When Mom asked them, they responded as follows: A said that C didn't break the vase. B said that A broke the vase. C said that A didn't break the vase. Mom knew that there was exactly one boy who was lying. Question: Who broke the vase?
+# In this seed puzzle, the words from the boys were modeled as "symbols" rather than "conditions" because a condition must be true in the final solution while a symbol's value can be either true or false.
 symbols:
-    max_num:
-        source: ["range(p_num)", "range(2, 11)"]
-        domain: "3"
-        custom_cond:
-            - scope: "domain"
-              fields: [0, 1]
-              constraint: "lambda l: all([item[0][1][0] < money // prices[item[0][0][0]] for item in l])"
-        formula: "num[names[_sym[0]]] <= _sym[1]"
-        desc: "The maximum number of Award {names[_sym[0]]} that a person can take is {_sym[1]}."
+  names_s: # symbols that represent if each boy broke the vase
+    source:
+    - names # the names of the boys
+    type: Bool
+    desc: "{_names} broke the vase"
+  speeches_s: # symbols that represent the words from each boy
+    source:
+    - names_s
+    - "[True, False]"
+    domain: p_num
+    domain_cond: false
+    formula: _sym[0] == _sym[1]
+    desc: "{names[_index]} said that {get_p(_sym[0], 'names')}{'broke' if _sym[1] else 'didn't break'} the vase."
 ```
 
 ### DerivedSymbols
@@ -449,7 +455,7 @@ post_generation:
         max_value: "max([_sol[key] for key in _sol])"
     post_gen_conditions:
         new_constraint:
-            formula: "x < max_value"
+            formula: "x < max_value" # x is a symbol defined before
             desc: "x must be less than the maximum value."
 ```
 
@@ -668,4 +674,4 @@ queries:
 
 **Type:** `str`
 
-Overall template description for puzzle description. Should be a regular Python string or a Python f-string without the prefix "f".
+Overall template description for puzzle description. Should be a regular Python string or a Python f-string without the prefix "f". E.g., `There are three boys: {', '.join(names)}. ...` where `names` is a list of names defined in the variables of the puzzle specification.
