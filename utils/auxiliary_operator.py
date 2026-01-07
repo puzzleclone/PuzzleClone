@@ -568,30 +568,20 @@ def generate_random_indices(choose, amount, domain, domain_cond=True, dim=1, dim
                 record_per_dim = combs[i][j][k]
                 new_record_per_dim = [None for _ in range(subdim)]
                 # print(i, j, k, record_per_dim, len(dim_cond[j]), len(record_per_dim))
-                assert(len(dim_cond[j]) == len(record_per_dim))
+                # assert(len(dim_cond[j]) == len(record_per_dim))
                 for l in range(len(dim_cond[j])):
                     field_idx = dim_cond[j][l]
                     new_record_per_dim[field_idx] = copy.deepcopy(record_per_dim[l])
-                # print(combs[i][j][k], new_record_per_dim, combs[1][0][0])
-                combs[i][j][k] = copy.deepcopy(new_record_per_dim) # 5维 product_num' * len(dim_cond) * dim * subdim * amount
-                # print(combs[i][j][k], new_record_per_dim, combs[1][0][0])
-    for i in range(len(combs)):
-        assert(len(combs[i]) == len(dim_cond))
-        # 再对dim_cond进行合并
-        for k in range(dim):
-            merged = [None for _ in range(subdim)]
-            for l in range(subdim):
-                for j in range(len(dim_cond)):
-                    if combs[i][j][k][l] is not None:
-                        merged[l] = combs[i][j][k][l]
-            combs_new[i][k] = merged
-
-    # print(combs_new[0]) # 4维 product_num' * dim * subdim * amount
+                # print("Before: ", combs[i][j][k], new_record_per_dim, combs[1][0][0])
+                # combs[i][j][k] = copy.deepcopy(new_record_per_dim) # 5维 product_num' * len(dim_cond) * dim * subdim * amount
+                for l in range(subdim):
+                    if new_record_per_dim[l] is not None:
+                        combs_new[i][k][l] = new_record_per_dim[l]
 
     # 第二步处理custom conditions
     custom_dim_cond = list(filter(lambda item: item['scope'] == 'dim', custom_cond))
     custom_domain_cond = list(filter(lambda item: item['scope'] == 'domain', custom_cond))
-    custom_option_cond = list(filter(lambda item: item['scope'] == 'option', custom_cond))
+    custom_option_cond = list(filter(lambda item: item['scope'] == 'option', custom_cond)) # [This is not used in this version, i.e., should always be empty list]
     def source_filter(candidate_comb): # 先对已经能判断的dim类custom condition进行一遍预过滤
         ok = True
         # print(candidate_comb)
