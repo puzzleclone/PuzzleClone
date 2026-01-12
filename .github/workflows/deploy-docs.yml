@@ -36,7 +36,8 @@ jobs:
       - name: Build Sphinx API Docs
         run: |
           cd docs
-          make html
+          sphinx-apidoc -o source ../ "../test*" "../output*"
+          make clean && make html
         
       - name: Build Tutorial Docs (MkDocs)
         run: |
